@@ -1,17 +1,34 @@
-#include <iostream>
+#include "threepp/threepp.hpp"
+#include <vector>
+#include <math.h>
 
-// TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+using namespace threepp;
+
 int main() {
-    // TIP Press <shortcut actionId="RenameElement"/> when your caret is at the <b>lang</b> variable name to see how CLion can help you rename it.
-    auto lang = "C++";
-    std::cout << "Hello and welcome to " << lang << "!\n";
+    Canvas canvas;
+    Scene scene;
+    GLRenderer renderer(canvas.size());
+    PerspectiveCamera camera(60,canvas.aspect(),0.1,1000); //test changing variables, to understand what they do. they might also make a good speedboost visual..
 
-    for (int i = 1; i <= 5; i++) {
-        // TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        std::cout << "test change = " << i << std::endl;
+    canvas.onWindowResize([&](WindowSize size) {
+                camera.aspect = size.aspect();
+                camera.updateProjectionMatrix();
+                renderer.setSize(size);
+            });
 
-    }
+    auto basicGeometry = BoxGeometry::create(1,1,2); //Top down game?
+    auto basicMaterial = MeshBasicMaterial::create();
+    basicMaterial->color = Color::white;
+    auto carMesh = Mesh::create(basicGeometry,basicMaterial);
+    scene.add(carMesh);
+    camera.position.z=5;
+    camera.position.y=1.5;
+
+
+
+    canvas.animate([&]{
+        renderer.render(scene, camera);
+    });
 
     return 0;
-    // TIP See CLion help at <a href="https://www.jetbrains.com/help/clion/">jetbrains.com/help/clion/</a>. Also, you can try interactive lessons for CLion by selecting 'Help | Learn IDE Features' from the main menu.
 }
