@@ -13,13 +13,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(threepp)
 add_executable(BilSimulator runProgram.cpp)
-#add_executable(testy bareBones.cpp)
+
 
 target_link_libraries(BilSimulator PUBLIC threepp::threepp)
-#target_link_libraries(testy PUBLIC threepp::threepp)
-
-#Bakgrunnsfarge til bestemt farge. Objekter skal starte blå, følge sinuskurve, Flytte kamera slik at vi faktsisk ser ting
-#Trykke på knapp og "annenhver" skal bytte farge?
-#Scene>Mesh>geometri>matrial
-#Hvis du lager et material og bytter fargen på den så bytter alle som har det matriale farge
-
+target_include_directories(BilSimulator PUBLIC include)

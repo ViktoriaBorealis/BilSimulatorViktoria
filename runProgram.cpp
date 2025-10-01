@@ -1,8 +1,11 @@
 #include "threepp/threepp.hpp"
 #include <vector>
 #include <math.h>
+#include "listenerForKeys.h"
 
 using namespace threepp;
+
+
 
 int main() {
     Canvas canvas;
@@ -16,7 +19,7 @@ int main() {
                 renderer.setSize(size);
             });
 
-    auto basicGeometry = BoxGeometry::create(1,1,2); //Top down game?
+    auto basicGeometry = BoxGeometry::create(1,1,2); //Top down game? nope, skal være 3d
     auto basicMaterial = MeshBasicMaterial::create();
     basicMaterial->color = Color::white;
     auto carMesh = Mesh::create(basicGeometry,basicMaterial);
@@ -25,7 +28,8 @@ int main() {
     camera.position.y=1.5;
 
 
-
+    auto keyController = std::make_unique<MyListener>(carMesh);
+    canvas.addKeyListener(*keyController);
     canvas.animate([&]{
         renderer.render(scene, camera);
     });

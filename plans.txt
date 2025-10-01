@@ -1,0 +1,16 @@
+Must do:
+Steering
+Add plane to drive on.
+Add obstacles
+Collision detection
+Wheeeeels
+Pick ups("powerups")
+
+
+
+Want to do:
+drifting
+Loops
+Crash system(burnout paradise?)
+Hp
+Spikes
