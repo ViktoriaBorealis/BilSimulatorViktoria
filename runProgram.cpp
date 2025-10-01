@@ -2,6 +2,7 @@
 #include <vector>
 #include <math.h>
 #include "listenerForKeys.h"
+#include "carClass.h"
 
 using namespace threepp;
 
@@ -27,8 +28,8 @@ int main() {
     camera.position.z=5;
     camera.position.y=1.5;
 
-
-    auto keyController = std::make_unique<MyListener>(carMesh);
+    carClass ourCar(carMesh);
+    auto keyController = std::make_unique<MyListener>(ourCar);
     canvas.addKeyListener(*keyController);
     canvas.animate([&]{
         renderer.render(scene, camera);
