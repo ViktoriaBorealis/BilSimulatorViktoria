@@ -17,11 +17,23 @@ struct MyListener : threepp::KeyListener {
         else if (evt.key == threepp::Key::W) {
             ourCar.wPressed=true;
         }
+        else if (evt.key == threepp::Key::D) {
+            ourCar.rightTurn=true;
+        }
+        else if (evt.key == threepp::Key::A) {
+            ourCar.leftTurn=true;
+        }
     }
 
     void onKeyReleased(threepp::KeyEvent evt) override {
         if (evt.key == threepp::Key::W) {
             ourCar.wPressed=false;
+        }
+        else if (evt.key == threepp::Key::D) {
+            ourCar.rightTurn=false;
+        }
+        else if (evt.key == threepp::Key::A) {
+            ourCar.leftTurn=false;
         }
     }
 
