@@ -14,3 +14,9 @@ Loops
 Crash system(burnout paradise?)
 Hp
 Spikes
+Puzzles???
+
+
+fysikk simulatorer
+//physex? physix?
+//bullet?

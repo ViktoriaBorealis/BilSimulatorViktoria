@@ -1,23 +1,46 @@
 #ifndef PEKERENENE_CARCLASS_H
 #define PEKERENENE_CARCLASS_H
+#include <vector>
 
-class carClass {
-    public:
-    carClass(const std::shared_ptr<threepp::Mesh>& carMesh): carMesh(carMesh) {}
+
+struct coords {
+    double x;
+    double y;
+    double z;
+};
+
+class CarClass {
+public:
+    CarClass() {}
 
 
     void hop() {
-        carMesh->position.y+=1;
     }
 
+    void accelerate() {
+        speed.z -= baseAcceleration * dt;
+    }
 
+    void act() {
+        if (wPressed) {
+            this->accelerate();
+        }
+        carPos.z += speed.z * dt;
+        carPos.x += speed.x * dt;
+        carPos.y += speed.y * dt;
+    }
 
+    bool wPressed = false;
+    float dt{0};
+    coords carPos{0.0, 0.0, 0.0};
+    coords carRotation{0.0, 0.0, 0.0}; //In radians
+private:
+    coords speed{0.0, 0.0, 0.0};
+    float baseAcceleration{1.5};
 
-    private:
-    const std::shared_ptr<threepp::Mesh>& carMesh;
+    //std::vector<float> carRotation{0.0,0.0,0.0};
     float rightTurn;
     float leftTurn;
-
 };
 
 #endif //PEKERENENE_CARCLASS_H

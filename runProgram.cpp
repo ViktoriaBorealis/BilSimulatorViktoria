@@ -1,9 +1,10 @@
 #include "threepp/threepp.hpp"
-#include <vector>
+
 #include <math.h>
 #include "listenerForKeys.h"
 #include "carClass.h"
-
+#include <iostream>
+#include <numbers>
 using namespace threepp;
 
 
@@ -28,11 +29,20 @@ int main() {
     camera.position.z=5;
     camera.position.y=1.5;
 
-    carClass ourCar(carMesh);
+    CarClass ourCar;
     auto keyController = std::make_unique<MyListener>(ourCar);
     canvas.addKeyListener(*keyController);
-    canvas.animate([&]{
+    Clock clock;
+
+    canvas.animate([&] {
+        const auto dt = clock.getDelta(); //Kode fra youbot
         renderer.render(scene, camera);
+
+        ourCar.dt=dt;
+        ourCar.act();
+
+        carMesh->rotation.set(ourCar.carRotation.x,ourCar.carRotation.y,ourCar.carRotation.z);
+        carMesh->position.set(ourCar.carPos.x,ourCar.carPos.y,ourCar.carPos.z);
     });
 
     return 0;

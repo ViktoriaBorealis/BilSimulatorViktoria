@@ -4,10 +4,10 @@
 
 struct MyListener : threepp::KeyListener {
 
-    MyListener(carClass& ourCar): ourCar(ourCar)
+    MyListener(CarClass& ourCar): ourCar(ourCar)
          {}
 
-    bool wPressed=false;
+
 
 
     void onKeyPressed(threepp::KeyEvent evt) override {
@@ -15,25 +15,21 @@ struct MyListener : threepp::KeyListener {
             ourCar.hop();
         }
         else if (evt.key == threepp::Key::W) {
-            wPressed&=true;
+            ourCar.wPressed=true;
         }
     }
 
     void onKeyReleased(threepp::KeyEvent evt) override {
         if (evt.key == threepp::Key::W) {
-            wPressed=false;
+            ourCar.wPressed=false;
         }
     }
 
-
-    void onKeyRepeat(threepp::KeyEvent evt) override { //Instead of this we can use a toggle.
-        //because this is slow
-        if (evt.key == threepp::Key::W) {
-            ourCar.hop();
-        }
+    void giveCarData() {
+//pass
     }
 private:
-    carClass& ourCar;
+    CarClass& ourCar;
 //omg branches be hard...
 };
 
