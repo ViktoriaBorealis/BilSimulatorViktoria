@@ -10,11 +10,12 @@ Pick ups("powerups")
 
 Want to do:
 drifting
-Loops
+Loops(Lag gravitasjon og basic normalkraft, slik at vi kan ha en justerbar normalkraft i loopsene.
 Crash system(burnout paradise?)
 Hp
 Spikes
 Puzzles???
+Space
 
 
 fysikk simulatorer

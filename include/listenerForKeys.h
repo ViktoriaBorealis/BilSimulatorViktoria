@@ -14,10 +14,14 @@ struct MyListener : threepp::KeyListener {
         if (evt.key == threepp::Key::SPACE) {
             ourCar.hop();
         }
-        else if (evt.key == threepp::Key::W) {
+
+        if (evt.key == threepp::Key::W) {
             ourCar.wPressed=true;
         }
-        else if (evt.key == threepp::Key::D) {
+        else if (evt.key == threepp::Key::S) {
+            ourCar.sPressed=true;
+        }
+        if (evt.key == threepp::Key::D) {
             ourCar.rightTurn=true;
         }
         else if (evt.key == threepp::Key::A) {
@@ -29,12 +33,17 @@ struct MyListener : threepp::KeyListener {
         if (evt.key == threepp::Key::W) {
             ourCar.wPressed=false;
         }
-        else if (evt.key == threepp::Key::D) {
+        else if (evt.key == threepp::Key::S) {
+            ourCar.sPressed=false;
+        }
+
+        if (evt.key == threepp::Key::D) {
             ourCar.rightTurn=false;
         }
         else if (evt.key == threepp::Key::A) {
             ourCar.leftTurn=false;
         }
+
     }
 
     void giveCarData() {
