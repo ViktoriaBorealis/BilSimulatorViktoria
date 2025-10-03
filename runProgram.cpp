@@ -21,6 +21,10 @@ int main() {
                 renderer.setSize(size);
             });
 
+    auto grid = GridHelper::create(20, 10, Color::yellowgreen);
+    grid->position.y-=0.5;
+    scene.add(grid);
+
     auto basicGeometry = BoxGeometry::create(1,1,2); //Top down game? nope, skal være 3d
     auto basicMaterial = MeshBasicMaterial::create();
     basicMaterial->color = Color::white;
@@ -43,6 +47,9 @@ int main() {
 
         carMesh->rotation.set(ourCar.carRotation.x,ourCar.carRotation.y,ourCar.carRotation.z);
         carMesh->position.set(ourCar.carPos.x,ourCar.carPos.y,ourCar.carPos.z);
+
+        camera.position.set(ourCar.carPos.x,ourCar.carPos.y,ourCar.carPos.z); //Todo make it so that it follows car
+        camera.rotation.set(ourCar.carRotation.x,ourCar.carRotation.y,ourCar.carRotation.z); //Todo make it so that it's not the wrong way...d
     });
 
     return 0;

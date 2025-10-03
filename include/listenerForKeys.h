@@ -12,7 +12,7 @@ struct MyListener : threepp::KeyListener {
 
     void onKeyPressed(threepp::KeyEvent evt) override {
         if (evt.key == threepp::Key::SPACE) {
-            ourCar.hop();
+            ourCar.momentumKeeping=0.1;
         }
 
         if (evt.key == threepp::Key::W) {
@@ -30,6 +30,9 @@ struct MyListener : threepp::KeyListener {
     }
 
     void onKeyReleased(threepp::KeyEvent evt) override {
+        if (evt.key == threepp::Key::SPACE) {
+            ourCar.momentumKeeping=0.001;
+        }
         if (evt.key == threepp::Key::W) {
             ourCar.wPressed=false;
         }
